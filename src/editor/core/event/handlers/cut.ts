@@ -4,6 +4,10 @@ import { CanvasEvent } from '../CanvasEvent'
 export function cut(host: CanvasEvent) {
   const draw = host.getDraw()
   const rangeManager = draw.getRange()
+  const position = draw.getPosition()
+  const cursorPosition = position.getCursorPosition()
+  if (!cursorPosition) return
+  const { index } = cursorPosition
   const { startIndex, endIndex } = rangeManager.getRange()
   if (!~startIndex && !~startIndex) return
   const isReadonly = draw.isReadonly()
@@ -15,6 +19,9 @@ export function cut(host: CanvasEvent) {
   const elementList = draw.getElementList()
   let start = startIndex
   let end = endIndex
+  if(elementList[index].lock){
+    return
+  }
   // 无选区则剪切一行
   if (startIndex === endIndex) {
     const position = draw.getPosition()

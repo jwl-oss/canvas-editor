@@ -29,25 +29,29 @@ const elementList: IElement[] = text.split('').map((value, index) => {
     return {
       value,
       size: 18,
-      bold: true
+      bold: true,
+      lock:true
     }
   }
   if (colorIndex.includes(index)) {
     return {
       value,
       color: '#FF0000',
-      size: 16
+      size: 16,
+      
     }
   }
   if (highlightIndex.includes(index)) {
     return {
       value,
-      highlight: '#F2F27F'
+      highlight: '#F2F27F',
+      
     }
   }
   return {
     value,
-    size: 16
+    size: 16,
+    lock:false
   }
 })
 
@@ -61,7 +65,8 @@ elementList.splice(14, 0, {
     placeholder: '其他补充',
     prefix: '{',
     postfix: '}'
-  }
+  },
+  lock:true
 })
 
 // 模拟下拉控件
@@ -85,7 +90,8 @@ elementList.splice(102, 0, {
       value: '不详',
       code: '98177'
     }]
-  }
+  },
+  lock:true
 })
 
 // 模拟超链接
@@ -94,31 +100,38 @@ elementList.splice(128, 0, {
   value: '',
   valueList: [{
     value: '新',
-    size: 16
+    size: 16,
+    lock:true
   }, {
     value: '冠',
-    size: 16
+    size: 16,
+    lock:true
   }, {
     value: '肺',
-    size: 16
+    size: 16,
+    lock:true
   }, {
     value: '炎',
-    size: 16
+    size: 16,
+    lock:true
   }],
-  url: 'https://hufe.club/canvas-editor'
+  lock:true,
+  url: 'https://hufe.club/canvas-editor',
 })
 
 // 模拟下标
 elementList.splice(361, 0, {
   value: '∆',
   color: '#FF0000',
-  type: ElementType.SUBSCRIPT
+  type: ElementType.SUBSCRIPT,
+  lock:true
 })
 
 // 模拟上标
 elementList.splice(449, 0, {
   value: '9',
-  type: ElementType.SUPERSCRIPT
+  type: ElementType.SUPERSCRIPT,
+  lock:true
 })
 
 // 模拟图片
@@ -127,7 +140,8 @@ elementList.splice(575, 0, {
   width: 89,
   height: 32,
   id: 'signature',
-  type: ElementType.IMAGE
+  type: ElementType.IMAGE,
+  lock:true
 })
 
 // 模拟表格

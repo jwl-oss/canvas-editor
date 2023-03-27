@@ -11,6 +11,7 @@ export interface IElementBasic {
   id?: string;
   type?: ElementType;
   value: string;
+  lock:boolean;
 }
 
 export interface IElementStyle {

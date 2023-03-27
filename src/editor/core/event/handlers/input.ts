@@ -11,10 +11,16 @@ export function input(data: string, host: CanvasEvent) {
   if (isReadonly) return
   const position = draw.getPosition()
   const cursorPosition = position.getCursorPosition()
+  const elementList = draw.getElementList()
   if (!data || !cursorPosition) return
+  const { index } = cursorPosition
   const control = draw.getControl()
   if (control.isPartRangeInControlOutside()) {
     // 忽略选区部分在控件的输入
+    return
+  }
+  //固定区域，无法输入
+  if(elementList[index].lock || elementList[index+1].lock){
     return
   }
   const isComposing = host.isComposing
@@ -37,7 +43,6 @@ export function input(data: string, host: CanvasEvent) {
     const { tdId, trId, tableId } = positionContext
     restArg = { tdId, trId, tableId }
   }
-  const elementList = draw.getElementList()
   const element = elementList[endIndex]
   const inputData: IElement[] = splitText(text).map(value => {
     const newElement: IElement = {

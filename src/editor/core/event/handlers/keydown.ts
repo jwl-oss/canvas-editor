@@ -31,6 +31,10 @@ export function keydown(evt: KeyboardEvent, host: CanvasEvent) {
       curIndex = control.keydown(evt)
     } else {
       // 判断是否允许删除
+      if(elementList[index].lock){
+        evt.preventDefault();
+        return
+      }
       if (isCollapsed && elementList[index].value === ZERO && index === 0) {
         evt.preventDefault()
         return
@@ -45,6 +49,10 @@ export function keydown(evt: KeyboardEvent, host: CanvasEvent) {
     rangeManager.setRange(curIndex, curIndex)
     draw.render({ curIndex })
   } else if (evt.key === KeyMap.Delete) {
+    if(elementList[index+1].lock){
+      evt.preventDefault();
+      return
+    }
     if (isReadonly || isPartRangeInControlOutside) return
     let curIndex: number
     if (activeControl) {
@@ -246,6 +254,10 @@ export function keydown(evt: KeyboardEvent, host: CanvasEvent) {
   } else if (isMod(evt) && evt.key === KeyMap.C) {
     host.copy()
     evt.preventDefault()
+  } else if (isMod(evt) && evt.key === KeyMap.V) {
+    if(elementList[index].lock || elementList[index+1].lock){
+      evt.preventDefault()
+    }
   } else if (isMod(evt) && evt.key === KeyMap.X) {
     host.cut()
     evt.preventDefault()
@@ -271,7 +283,8 @@ export function keydown(evt: KeyboardEvent, host: CanvasEvent) {
   } else if (evt.key === KeyMap.TAB) {
     draw.insertElementList([{
       type: ElementType.TAB,
-      value: ''
+      value: '',
+      lock:false,
     }])
     evt.preventDefault()
   }
