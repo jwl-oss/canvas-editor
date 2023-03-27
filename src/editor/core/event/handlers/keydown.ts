@@ -285,6 +285,7 @@ export function keydown(evt: KeyboardEvent, host: CanvasEvent) {
       type: ElementType.TAB,
       value: '',
       lock:false,
+      catalogue:false
     }])
     evt.preventDefault()
   }

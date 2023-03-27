@@ -12,6 +12,7 @@ export interface IElementBasic {
   type?: ElementType;
   value: string;
   lock:boolean;
+  catalogue:boolean;
 }
 
 export interface IElementStyle {
@@ -28,6 +29,8 @@ export interface IElementStyle {
   rowFlex?: RowFlex;
   rowMargin?: number;
   letterSpacing?: number;
+  lock?:boolean;
+  catalogue?:boolean;
 }
 
 export interface ITableAttr {

@@ -781,3 +781,23 @@ ul {
 .ce-contextmenu-signature {
   background-image: url('./assets/images/signature.svg');
 }
+
+.catalogue{
+  width: 200px;
+  text-align: left;
+  background: #F2F4F7;
+  z-index: 9;
+  position: fixed;
+  top: 50px;
+  bottom: 30px;
+  left: 0px;
+  font-size: 12px;
+  padding: 30px 4px 0 20px;
+}
+
+.catalogue_title{
+  margin-left: 10%;
+}
+.catalogue_content{
+  margin-left: 10%;
+}

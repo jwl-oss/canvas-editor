@@ -34,6 +34,28 @@ window.onload = function () {
   // cypress使用
   Reflect.set(window, 'editor', instance)
 
+  //目录功能
+  const getCatalogue = function(){
+    const data = instance.command.getValue().data.main;
+    const catalogue:String[] = [];
+    let e = 0
+    while(e<data.length){
+      let row = data[e];
+      if(row.catalogue){
+        catalogue.push(row.value)
+      }
+      e++
+    }
+    let text = '';
+    for(let i=0;i<catalogue.length;i++){
+      text += catalogue[i] + '\n';
+    }
+    const div = document.querySelector<HTMLDivElement>('.catalogue_content')!;
+    div.innerText = text;
+  }
+  setInterval(getCatalogue,500)
+
+
   // 2. | 撤销 | 重做 | 格式刷 | 清除格式 |
   const undoDom = document.querySelector<HTMLDivElement>('.menu-item__undo')!
   undoDom.title = `撤销(${isApple ? '⌘' : 'Ctrl'}+Z)`
@@ -99,6 +121,9 @@ window.onload = function () {
   sizeAddDom.onclick = function () {
     console.log('size-add')
     instance.command.executeSizeAdd()
+        //暂且作为导出数据的按键
+        const data = instance.command.getValue();
+        debugger
   }
 
   const sizeMinusDom = document.querySelector<HTMLDivElement>('.menu-item__size-minus')!

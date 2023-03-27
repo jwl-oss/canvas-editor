@@ -30,7 +30,8 @@ const elementList: IElement[] = text.split('').map((value, index) => {
       value,
       size: 18,
       bold: true,
-      lock:true
+      lock:true,
+      catalogue:true
     }
   }
   if (colorIndex.includes(index)) {
@@ -45,13 +46,13 @@ const elementList: IElement[] = text.split('').map((value, index) => {
     return {
       value,
       highlight: '#F2F27F',
-      
     }
   }
   return {
     value,
     size: 16,
-    lock:false
+    lock:false,
+    catalogue:false
   }
 })
 
@@ -66,7 +67,8 @@ elementList.splice(14, 0, {
     prefix: '{',
     postfix: '}'
   },
-  lock:true
+  lock:true,
+  catalogue:false
 })
 
 // 模拟下拉控件
