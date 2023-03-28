@@ -161,12 +161,18 @@ ul {
   position: relative;
 }
 
+.menu-item .menu-item__title {
+  width: 40px;
+  position: relative;
+}
+
 .menu-item .menu-item__size {
   width: 50px;
   text-align: center;
   position: relative;
 }
 
+.menu-item__title .select,
 .menu-item__font .select,
 .menu-item__size .select {
   width: 100%;

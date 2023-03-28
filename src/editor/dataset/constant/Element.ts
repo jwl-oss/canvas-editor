@@ -53,6 +53,7 @@ export const EDITOR_ELEMENT_ZIP_ATTR: Array<keyof IElement> = [
   'dateFormat',
   'block',
   'catalogue',
+  'level',
 ]
 
 export const TEXTLIKE_ELEMENT_TYPE: ElementType[] = [

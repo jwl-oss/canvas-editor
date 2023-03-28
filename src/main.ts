@@ -37,24 +37,31 @@ window.onload = function () {
   //目录功能
   const getCatalogue = function(){
     const data = instance.command.getValue().data.main;
-    const catalogue:String[] = [];
+    const catalogue:IElement[] = [];
     let e = 0
     while(e<data.length){
       let row = data[e];
       if(row.catalogue){
-        catalogue.push(row.value)
+        catalogue.push(row)
       }
       e++
     }
-    let text = '';
+    let index = 0 ;
+    const zNode = [];
     for(let i=0;i<catalogue.length;i++){
-      text += catalogue[i] + '\n';
+       let row = catalogue[i];
+       let data = {}
+       if(row.level == 0){
+          index++
+          data = {"id":index,"pId":0,"name":row.value}
+       }else{
+          data = {"id":index*10+i,"pId":index,"name":row.value}
+       }
+       zNode.push(data)
     }
-    const div = document.querySelector<HTMLDivElement>('.catalogue_content')!;
-    div.innerText = text;
+    debugger
   }
-  setInterval(getCatalogue,500)
-
+  //setInterval(getCatalogue,500)
 
   // 2. | 撤销 | 重做 | 格式刷 | 清除格式 |
   const undoDom = document.querySelector<HTMLDivElement>('.menu-item__undo')!
@@ -91,6 +98,21 @@ window.onload = function () {
   }
 
   // 3. | 字体 | 字体变大 | 字体变小 | 加粗 | 斜体 | 下划线 | 删除线 | 上标 | 下标 | 字体颜色 | 背景色 |
+  const titleSetDom = document.querySelector<HTMLDivElement>('.menu-item__title')!
+  const titleSelectDom = titleSetDom.querySelector<HTMLDivElement>('.select')!
+  const titleOptionDom = titleSetDom.querySelector<HTMLDivElement>('.options')!
+  titleSetDom.title = `设置标题`
+  titleSetDom.onclick = function () {
+    console.log('title')
+    titleOptionDom.classList.toggle('visible')
+  }
+  titleOptionDom.onclick = function (evt) {
+    const li = evt.target as HTMLLIElement
+    instance.command.executeTitle(Number(li.dataset.level!))
+    getCatalogue()
+  }
+
+
   const fontDom = document.querySelector<HTMLDivElement>('.menu-item__font')!
   const fontSelectDom = fontDom.querySelector<HTMLDivElement>('.select')!
   const fontOptionDom = fontDom.querySelector<HTMLDivElement>('.options')!
@@ -121,9 +143,6 @@ window.onload = function () {
   sizeAddDom.onclick = function () {
     console.log('size-add')
     instance.command.executeSizeAdd()
-        //暂且作为导出数据的按键
-        const data = instance.command.getValue();
-        debugger
   }
 
   const sizeMinusDom = document.querySelector<HTMLDivElement>('.menu-item__size-minus')!

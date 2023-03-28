@@ -9,6 +9,8 @@ import { CommandAdapt } from './CommandAdapt'
 
 export class Command {
 
+  private static title:CommandAdapt['title']
+
   private static mode: CommandAdapt['mode']
   private static cut: CommandAdapt['cut']
   private static copy: CommandAdapt['copy']
@@ -84,6 +86,8 @@ export class Command {
   private static setLocale: CommandAdapt['setLocale']
 
   constructor(adapt: CommandAdapt) {
+    Command.title = adapt.title.bind(adapt)
+
     Command.mode = adapt.mode.bind(adapt)
     Command.cut = adapt.cut.bind(adapt)
     Command.copy = adapt.copy.bind(adapt)
@@ -160,6 +164,10 @@ export class Command {
   }
 
   // 全局命令
+  public executeTitle(payload: number){
+    return Command.title(payload)
+  }
+
   public executeMode(payload: EditorMode) {
     return Command.mode(payload)
   }

@@ -13,6 +13,7 @@ export interface IElementBasic {
   value: string;
   lock:boolean;
   catalogue:boolean;
+  level:number;
 }
 
 export interface IElementStyle {

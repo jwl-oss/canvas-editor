@@ -31,7 +31,8 @@ const elementList: IElement[] = text.split('').map((value, index) => {
       size: 18,
       bold: true,
       lock:true,
-      catalogue:true
+      catalogue:true,
+      level:0,
     }
   }
   if (colorIndex.includes(index)) {
@@ -39,13 +40,16 @@ const elementList: IElement[] = text.split('').map((value, index) => {
       value,
       color: '#FF0000',
       size: 16,
-      
+      catalogue:true,
+      level:1,
     }
   }
   if (highlightIndex.includes(index)) {
     return {
       value,
       highlight: '#F2F27F',
+      catalogue:true,
+      level:1,
     }
   }
   return {

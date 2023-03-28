@@ -64,6 +64,9 @@
     "vue": "^3.2.45"
   },
   "dependencies": {
+    "@types/jquery": "^3.5.16",
+    "@ztree/ztree_v3": "^3.5.48",
+    "jquery": "^3.6.4",
     "prismjs": "^1.27.0"
   },
   "simple-git-hooks": {

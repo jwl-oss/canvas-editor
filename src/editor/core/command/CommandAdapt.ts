@@ -60,6 +60,61 @@ export class CommandAdapt {
     this.i18n = draw.getI18n()
   }
 
+  public title(payload: number){
+    //传入的为level
+    if (payload < 0 || payload > 10) return
+    const isReadonly = this.draw.isReadonly()
+    if (isReadonly) return
+    let isExistUpdate = false
+    //选取获取一整行，进行修改
+    let {startIndex,endIndex} = this.range.getRange()
+    const selection = this.range.getTextLikeSelection()
+    //若有选中区域，如果选中区域从第一个开始，startIndex是上一行的末尾。
+    if(selection && selection.length!=0) startIndex ++;
+    const positionList = this.draw.getPosition().getPositionList()
+    const startPosition = positionList[startIndex]
+    const curRowNo = startPosition.rowNo
+    const curPageNo = startPosition.pageNo
+    const LineElementIndexList: number[] = []
+    for (let p = 0; p < positionList.length; p++) {
+      const position = positionList[p]
+      if (position.pageNo > curPageNo) break
+      if (position.pageNo === curPageNo && position.rowNo === curRowNo) {
+        LineElementIndexList.push(p)
+      }
+    }
+    const firstElementIndex = LineElementIndexList[0] - 1
+    const start = firstElementIndex < 0 ? 0 : firstElementIndex
+    const end = LineElementIndexList[LineElementIndexList.length - 1]
+    const elementList = this.draw.getElementList().slice(start + 1, end + 1)
+    for(let i=0;i<elementList.length;i++){
+      let el = elementList[i]
+      el.level = payload
+      el.catalogue = true
+      //需添加level对应的样式（size,bold）
+      el.bold = true
+      switch(payload){
+        case 0:
+          el.size = 20
+          break;
+        case 1:
+          el.size = 18
+          break;
+        case 2:
+          el.size = 15
+          break;
+        case 3:
+          el.size = 12
+          break;
+             
+      }
+      isExistUpdate = true
+    }
+    if (isExistUpdate) {
+      this.draw.render({ isSetCursor: false })
+    }
+  }
+
   public mode(payload: EditorMode) {
     const mode = this.draw.getMode()
     if (mode === payload) return

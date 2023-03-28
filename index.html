@@ -27,6 +27,17 @@
       </div>
       <div class="menu-divider"></div>
       <div class="menu-item">
+        <div class="menu-item__title">
+          <span class="select" title="标题">标题</span>
+          <div class="options">
+            <ul>
+              <li data-level="0" style="font-size: 20px;font-weight: bold;">标题</li>
+              <li data-level="1" style="font-size: 18px;font-weight: bold;">标题1</li>
+              <li data-level="2" style="font-size: 15ppx;font-weight: bold;">标题2</li>
+              <li data-level="3" style="font-size: 12px;font-weight: bold;">标题3</li>
+            </ul>
+          </div>
+        </div>
         <div class="menu-item__font">
           <span class="select" title="字体">微软雅黑</span>
           <div class="options">
@@ -316,7 +327,7 @@
     <div class="catalogue" editor-component="catalogue">
       <h5 class="catalogue_title" style="height: max-content;">目录</h5>
       <hr style="margin-top: 10px;margin-bottom: 10px;"/>
-      <div class="catalogue_content"></div>
+      <div class="catalogue_content"><ul class="ztree"></ul></div>
     </div>
   </div>
   <script type="module" src="/src/main.ts"></script>

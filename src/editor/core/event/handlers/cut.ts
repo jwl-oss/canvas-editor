@@ -24,6 +24,7 @@ export function cut(host: CanvasEvent) {
   }
   // 无选区则剪切一行
   if (startIndex === endIndex) {
+    debugger
     const position = draw.getPosition()
     const positionList = position.getPositionList()
     const startPosition = positionList[startIndex]
