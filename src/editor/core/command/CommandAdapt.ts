@@ -115,6 +115,36 @@ export class CommandAdapt {
     }
   }
 
+  public lock(){
+    const isReadonly = this.draw.isReadonly()
+    if (isReadonly) return
+    const selection = this.range.getTextLikeSelection()
+    if (!selection || !selection.length) return
+    let isExistUpdate = false
+    selection.forEach(el => {
+      el.lock = true
+      isExistUpdate = true
+    })
+    if (isExistUpdate) {
+      this.draw.render({ isSetCursor: false })
+    }
+  }
+
+  public unlock(){
+    const isReadonly = this.draw.isReadonly()
+    if (isReadonly) return
+    const selection = this.range.getTextLikeSelection()
+    if (!selection || !selection.length) return
+    let isExistUpdate = false
+    selection.forEach(el => {
+      el.lock = false
+      isExistUpdate = true
+    })
+    if (isExistUpdate) {
+      this.draw.render({ isSetCursor: false })
+    }
+  }
+
   public mode(payload: EditorMode) {
     const mode = this.draw.getMode()
     if (mode === payload) return

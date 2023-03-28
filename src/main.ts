@@ -59,9 +59,21 @@ window.onload = function () {
        }
        zNode.push(data)
     }
-    debugger
   }
-  //setInterval(getCatalogue,500)
+  setInterval(getCatalogue,500)
+
+  //lock
+  const lockDom = document.querySelector<HTMLDivElement>('.menu-item__lock')!
+  lockDom.onclick = function () {
+    console.log('lock')
+    instance.command.executeLock()
+  }
+  //unlock
+  const unlockDom = document.querySelector<HTMLDivElement>('.menu-item__unlock')!
+  unlockDom.onclick = function () {
+    console.log('unlock')
+    instance.command.executeUnlock()
+  }
 
   // 2. | 撤销 | 重做 | 格式刷 | 清除格式 |
   const undoDom = document.querySelector<HTMLDivElement>('.menu-item__undo')!

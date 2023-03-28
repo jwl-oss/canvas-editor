@@ -10,6 +10,8 @@ import { CommandAdapt } from './CommandAdapt'
 export class Command {
 
   private static title:CommandAdapt['title']
+  private static lock:CommandAdapt['lock']
+  private static unlock:CommandAdapt['unlock']
 
   private static mode: CommandAdapt['mode']
   private static cut: CommandAdapt['cut']
@@ -87,6 +89,8 @@ export class Command {
 
   constructor(adapt: CommandAdapt) {
     Command.title = adapt.title.bind(adapt)
+    Command.lock = adapt.lock.bind(adapt)
+    Command.unlock = adapt.unlock.bind(adapt)
 
     Command.mode = adapt.mode.bind(adapt)
     Command.cut = adapt.cut.bind(adapt)
@@ -166,6 +170,14 @@ export class Command {
   // 全局命令
   public executeTitle(payload: number){
     return Command.title(payload)
+  }
+
+  public executeLock(){
+    return Command.lock()
+  }
+
+  public executeUnlock(){
+    return Command.unlock()
   }
 
   public executeMode(payload: EditorMode) {
