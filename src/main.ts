@@ -1,4 +1,4 @@
-import { data, options } from './mock_招标人须知'
+import { data, options } from './mock_请示报告单'
 import './style.css'
 import prism from 'prismjs'
 import Editor, { BlockType, Command, ControlType, EditorMode, ElementType, IBlock, IElement, KeyMap, PageMode, PaperDirection, RowFlex } from './editor'

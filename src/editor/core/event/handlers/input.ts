@@ -20,7 +20,11 @@ export function input(data: string, host: CanvasEvent) {
     return
   }
   //固定区域，无法输入
-  if(elementList[index].lock || elementList[index+1].lock){
+  if(elementList[index].lock){
+    return
+  }
+  //判断后面是否还有element
+  if(index < elementList.length-1&& elementList[index+1].lock){
     return
   }
   const isComposing = host.isComposing
