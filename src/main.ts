@@ -1,4 +1,4 @@
-import { data, options } from './mock'
+import { data, options } from './mock_招标人须知'
 import './style.css'
 import prism from 'prismjs'
 import Editor, { BlockType, Command, ControlType, EditorMode, ElementType, IBlock, IElement, KeyMap, PageMode, PaperDirection, RowFlex } from './editor'
@@ -12,24 +12,31 @@ window.onload = function () {
   // 1. 初始化编辑器
   const container = document.querySelector<HTMLDivElement>('.editor')!
   const instance = new Editor(
-    container,
-    {
-      header: [{
-        value: '第一人民医院',
-        size: 32,
-        rowFlex: RowFlex.CENTER
-      }, {
-        value: '\n门诊病历',
-        size: 18,
-        rowFlex: RowFlex.CENTER
-      }, {
-        value: '\n',
-        type: ElementType.SEPARATOR
-      }],
+    container,{
+      header:[],
       main: <IElement[]>data
-    },
-    options
+    }
   )
+  console.log(data)
+  // const instance = new Editor(
+  //   container,
+  //   {
+  //     header: [{
+  //       value: '第一人民医院',
+  //       size: 32,
+  //       rowFlex: RowFlex.CENTER
+  //     }, {
+  //       value: '\n门诊病历',
+  //       size: 18,
+  //       rowFlex: RowFlex.CENTER
+  //     }, {
+  //       value: '\n',
+  //       type: ElementType.SEPARATOR
+  //     }],
+  //     main: <IElement[]>data
+  //   },
+  //   options
+  // )
   console.log('实例: ', instance)
   // cypress使用
   Reflect.set(window, 'editor', instance)
@@ -37,6 +44,7 @@ window.onload = function () {
   //目录功能
   const getCatalogue = function(){
     const data = instance.command.getValue().data.main;
+    console.log(data)
     const catalogue:IElement[] = [];
     let e = 0
     while(e<data.length){
@@ -60,13 +68,14 @@ window.onload = function () {
        zNode.push(data)
     }
   }
-  setInterval(getCatalogue,500)
+  //setInterval(getCatalogue,5000)
 
   //lock
   const lockDom = document.querySelector<HTMLDivElement>('.menu-item__lock')!
   lockDom.onclick = function () {
     console.log('lock')
     instance.command.executeLock()
+
   }
   //unlock
   const unlockDom = document.querySelector<HTMLDivElement>('.menu-item__unlock')!
@@ -80,7 +89,8 @@ window.onload = function () {
   undoDom.title = `撤销(${isApple ? '⌘' : 'Ctrl'}+Z)`
   undoDom.onclick = function () {
     console.log('undo')
-    instance.command.executeUndo()
+    getCatalogue()
+    //instance.command.executeUndo()
   }
 
   const redoDom = document.querySelector<HTMLDivElement>('.menu-item__redo')!
@@ -558,15 +568,22 @@ window.onload = function () {
             instance.command.executeInsertElementList([{
               type: ElementType.CONTROL,
               value: '',
+              // control: {
+              //   type,
+              //   value: value
+              //     ? [{
+              //       value
+              //     }]
+              //     : null,
+              //   placeholder
+              // }
               control: {
-                type,
-                value: value
-                  ? [{
-                    value
-                  }]
-                  : null,
-                placeholder
-              }
+                type: ControlType.TEXT,
+                value: null,
+                placeholder: placeholder,
+                prefix: ' ',
+                postfix: ' '
+              },
             }])
           }
         })

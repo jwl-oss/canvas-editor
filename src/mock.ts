@@ -30,7 +30,6 @@ const elementList: IElement[] = text.split('').map((value, index) => {
       value,
       size: 18,
       bold: true,
-      lock:true,
       catalogue:true,
       level:0,
     }
@@ -68,10 +67,9 @@ elementList.splice(14, 0, {
     type: ControlType.TEXT,
     value: null,
     placeholder: '其他补充',
-    prefix: '{',
-    postfix: '}'
+    prefix: ' ',
+    postfix: ' '
   },
-  lock:true,
   catalogue:false
 })
 
@@ -96,8 +94,7 @@ elementList.splice(102, 0, {
       value: '不详',
       code: '98177'
     }]
-  },
-  lock:true
+  }
 })
 
 // 模拟超链接
@@ -107,21 +104,20 @@ elementList.splice(128, 0, {
   valueList: [{
     value: '新',
     size: 16,
-    lock:true
+    
   }, {
     value: '冠',
     size: 16,
-    lock:true
+    
   }, {
     value: '肺',
     size: 16,
-    lock:true
+    
   }, {
     value: '炎',
     size: 16,
-    lock:true
+    
   }],
-  lock:true,
   url: 'https://hufe.club/canvas-editor',
 })
 
@@ -130,14 +126,14 @@ elementList.splice(361, 0, {
   value: '∆',
   color: '#FF0000',
   type: ElementType.SUBSCRIPT,
-  lock:true
+  
 })
 
 // 模拟上标
 elementList.splice(449, 0, {
   value: '9',
   type: ElementType.SUPERSCRIPT,
-  lock:true
+  
 })
 
 // 模拟图片
@@ -147,7 +143,7 @@ elementList.splice(575, 0, {
   height: 32,
   id: 'signature',
   type: ElementType.IMAGE,
-  lock:true
+  
 })
 
 // 模拟表格

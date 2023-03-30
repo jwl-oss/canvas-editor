@@ -54,6 +54,7 @@ export const EDITOR_ELEMENT_ZIP_ATTR: Array<keyof IElement> = [
   'block',
   'catalogue',
   'level',
+  'lock',
 ]
 
 export const TEXTLIKE_ELEMENT_TYPE: ElementType[] = [

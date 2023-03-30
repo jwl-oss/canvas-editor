@@ -414,6 +414,7 @@ export function zipElementList(payload: IElement[]): IElement[] {
   return zipElementListData
 }
 
+
 export function getElementRowFlex(node: HTMLElement) {
   const textAlign = window.getComputedStyle(node).textAlign
   switch (textAlign) {
