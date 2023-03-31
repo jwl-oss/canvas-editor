@@ -121,7 +121,14 @@ export function formatElementList(elementList: IElement[], options: IFormatEleme
           type: el.type,
           control: el.control,
           controlComponent: ControlComponent.PREFIX,
-          ...thePrePostfixArgs
+          ...thePrePostfixArgs,
+          size:el.size,
+          font:el.font,
+          rowFlex:el.rowFlex,
+          bold:el.bold,
+          lock:el.lock,
+          catalogue:el.catalogue,
+          level:el.level
         })
         i++
       }
@@ -218,7 +225,14 @@ export function formatElementList(elementList: IElement[], options: IFormatEleme
             type: el.type,
             control: el.control,
             controlComponent: ControlComponent.PLACEHOLDER,
-            ...thePlaceholderArgs
+            ...thePlaceholderArgs,
+            size:el.size,
+            font:el.font,
+            rowFlex:el.rowFlex,
+            bold:el.bold,
+            lock:el.lock,
+            catalogue:el.catalogue,
+            level:el.level
           })
           i++
         }
@@ -233,7 +247,14 @@ export function formatElementList(elementList: IElement[], options: IFormatEleme
           type: el.type,
           control: el.control,
           controlComponent: ControlComponent.POSTFIX,
-          ...thePrePostfixArgs
+          ...thePrePostfixArgs,
+          size:el.size,
+          font:el.font,
+          rowFlex:el.rowFlex,
+          bold:el.bold,
+          lock:el.lock,
+          catalogue:el.catalogue,
+          level:el.level
         })
         i++
       }
@@ -365,13 +386,22 @@ export function zipElementList(payload: IElement[]): IElement[] {
       dateElement.valueList = zipElementList(valueList)
       element = dateElement
     } else if (element.type === ElementType.CONTROL) {
+      //debugger
       // 控件处理
       const controlId = element.controlId
       const control = element.control!
       const controlElement: IElement = {
         type: ElementType.CONTROL,
         value: '',
-        control
+        control,
+        size:element.size,
+        font:element.font,
+        rowFlex:element.rowFlex,
+        bold:element.bold,
+        color:element.color,
+        lock:element.lock,
+        catalogue:element.catalogue,
+        level:element.level
       }
       const valueList: IElement[] = []
       while (e < elementList.length) {

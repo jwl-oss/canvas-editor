@@ -70,7 +70,7 @@ elementList.splice(14, 0, {
     prefix: ' ',
     postfix: ' '
   },
-  catalogue:false
+  catalogue:false,
 })
 
 // 模拟下拉控件

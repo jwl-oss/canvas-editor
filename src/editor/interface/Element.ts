@@ -65,6 +65,14 @@ export interface IControlElement {
   control?: IControl;
   controlId?: string;
   controlComponent?: ControlComponent;
+  font?: string;
+  size?: number;
+  bold?: boolean;
+  color?: string;
+  rowFlex?: RowFlex;
+  rowMargin?: number;
+  lock?:boolean;
+  catalogue?:boolean;
 }
 
 export interface ICheckboxElement {
