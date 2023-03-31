@@ -1,4 +1,4 @@
-import { data, options } from './mock_请示报告单'
+import { data} from './mock_请示报告单'
 import './style.css'
 import prism from 'prismjs'
 import Editor, { BlockType, Command, ControlType, EditorMode, ElementType, IBlock, IElement, KeyMap, PageMode, PaperDirection, RowFlex } from './editor'
@@ -48,7 +48,7 @@ window.onload = function () {
     const catalogue:IElement[] = [];
     let e = 0
     while(e<data.length){
-      let row = data[e];
+      const row = data[e];
       if(row.catalogue){
         catalogue.push(row)
       }
@@ -57,7 +57,7 @@ window.onload = function () {
     let index = 0 ;
     const zNode = [];
     for(let i=0;i<catalogue.length;i++){
-       let row = catalogue[i];
+       const row = catalogue[i];
        let data = {}
        if(row.level == 0){
           index++
@@ -121,7 +121,7 @@ window.onload = function () {
 
   // 3. | 字体 | 字体变大 | 字体变小 | 加粗 | 斜体 | 下划线 | 删除线 | 上标 | 下标 | 字体颜色 | 背景色 |
   const titleSetDom = document.querySelector<HTMLDivElement>('.menu-item__title')!
-  const titleSelectDom = titleSetDom.querySelector<HTMLDivElement>('.select')!
+  //const titleSelectDom = titleSetDom.querySelector<HTMLDivElement>('.select')!
   const titleOptionDom = titleSetDom.querySelector<HTMLDivElement>('.options')!
   titleSetDom.title = `设置标题`
   titleSetDom.onclick = function () {

@@ -30,8 +30,6 @@ export interface IElementStyle {
   rowFlex?: RowFlex;
   rowMargin?: number;
   letterSpacing?: number;
-  lock?:boolean;
-  catalogue?:boolean;
 }
 
 export interface ITableAttr {

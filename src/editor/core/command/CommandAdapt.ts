@@ -68,6 +68,8 @@ export class CommandAdapt {
     let isExistUpdate = false
     //选取获取一整行，进行修改
     let {startIndex,endIndex} = this.range.getRange()
+    //无用的endIndex
+    endIndex = 0;
     const selection = this.range.getTextLikeSelection()
     //若有选中区域，如果选中区域从第一个开始，startIndex是上一行的末尾。
     if(selection && selection.length!=0) startIndex ++;
@@ -88,7 +90,7 @@ export class CommandAdapt {
     const end = LineElementIndexList[LineElementIndexList.length - 1]
     const elementList = this.draw.getElementList().slice(start + 1, end + 1)
     for(let i=0;i<elementList.length;i++){
-      let el = elementList[i]
+      const el = elementList[i]
       el.level = payload
       el.catalogue = true
       //需添加level对应的样式（size,bold）
